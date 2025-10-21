@@ -4,7 +4,7 @@
   "author": "SwuerpY",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SwuerpY/m3ripple-vue.git"
+    "url": "git+https://github.com/SwuerpY/m3ripple-vue.git"
   },
   "homepage": "https://github.com/SwuerpY/m3ripple-vue",
   "keywords": [
