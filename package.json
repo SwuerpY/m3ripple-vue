@@ -1,0 +1,58 @@
+{
+  "name": "m3ripple-vue",
+  "description": "Bring Material 3(You) Ripple Effect to your Vue projects!",
+  "author": "SwuerpY",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SwuerpY/m3ripple-vue.git"
+  },
+  "homepage": "https://github.com/SwuerpY/m3ripple-vue",
+  "keywords": [
+    "web",
+    "vue",
+    "vue3",
+    "ripple",
+    "material",
+    "material design",
+    "material you",
+    "m3",
+    "ui",
+    "component",
+    "front-end"
+  ],
+  "private": false,
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/m3ripple-vue.umd.js",
+  "module": "./dist/m3ripple-vue.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/m3ripple-vue.js",
+      "require": "./dist/m3ripple-vue.umd.cjs"
+    },
+    "./style.css": "./dist/m3ripple-vue.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.22"
+  },
+  "devDependencies": {
+    "@types/node": "^24.9.0",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/tsconfig": "^0.8.1",
+    "typescript": "~5.9.3",
+    "vite": "^7.1.11",
+    "vite-plugin-dts": "^3.9.1",
+    "vue-tsc": "^3.1.1"
+  }
+}
