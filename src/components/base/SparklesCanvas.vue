@@ -1,3 +1,4 @@
+// src/components/base/SparklesCanvas.vue
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 import { drawSparkles, type Sparkles } from "../../ripple/sparkles";
@@ -65,7 +66,7 @@ onMounted(() => {
       return;
     }
 
-    animIdRef.value = drawSparkles(
+    drawSparkles(
       sparkles_collection,
       context,
       props.rippleRef,
@@ -78,6 +79,8 @@ onMounted(() => {
       6,
       props.sparklesMaxCount
     );
+
+    animIdRef.value = requestAnimationFrame(animate);
   };
 
   // Start animation

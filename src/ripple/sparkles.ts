@@ -84,25 +84,14 @@ export function drawSparkles(
   // no zero
   convLevel = 6,
   spaklesMaxCount = 2048
-): number {
+): void {
   const nowRippleRadius = ripple.clientWidth / 2;
   const radius = ripple.clientWidth / 2.6;
 
   context.clearRect(0, 0, ripple_width, ripple_width);
 
   if (nowRippleRadius === 0 || convLevel === 0) {
-    // Return a dummy animation frame ID to maintain the loop
-    return window.requestAnimationFrame(() =>
-      drawSparkles(
-        sparkle_collection,
-        context,
-        ripple,
-        ripple_width,
-        sparklesColor,
-        convLevel,
-        spaklesMaxCount
-      )
-    );
+    return;
   }
 
   const sparkles: Sparkle[] = [];
@@ -165,16 +154,4 @@ export function drawSparkles(
       );
     }
   }
-
-  return window.requestAnimationFrame(() =>
-    drawSparkles(
-      sparkle_collection,
-      context,
-      ripple,
-      ripple_width,
-      sparklesColor,
-      convLevel,
-      spaklesMaxCount
-    )
-  );
 }
