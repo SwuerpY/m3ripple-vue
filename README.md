@@ -41,76 +41,97 @@ yarn add m3ripple-vue
 bun add m3ripple-vue
 ```
 
-### Use
+### Usage
 
-Import the `<RippleContainer>` component and its necessary CSS. Wrap any element you want to add the ripple effect to with `<RippleContainer>`.
+Import the `<Ripple />` component and place it **inside** any element you want to add the effect to.
 
-#### Example
+**IMPORTANT**: The parent element (`<button>`, `<div>`, etc.) **must** have its CSS `position` set to `relative`, `absolute`, `fixed`, or `sticky`.
 
 ```vue
 <script setup lang="ts">
-import { RippleContainer } from "m3ripple-vue";
-// Import the required styles
-import "m3ripple-vue/style.css";
-
-// Optional: Define a function to run just before the ripple animation starts
-const handleBeforeRipple = (event: MouseEvent | TouchEvent) => {
-  console.log("Ripple effect triggered!", event);
-  // You could add logic here, e.g., apply a temporary style
-};
+import { Ripple } from "m3ripple-vue";
 </script>
 
 <template>
-  <RippleContainer
-    :isMaterial3="true"
-    :beforeRippleFn="handleBeforeRipple"
-    class="my-button-wrapper"
-    rippleColor="rgba(255, 255, 255, 0.2)"
-    sparklesColorRGB="255 255 255"
-  >
-    <button class="my-button">Click Me!</button>
-  </RippleContainer>
-
-  <RippleContainer class="my-card-wrapper">
-    <div class="my-card-content">Clickable Card Content</div>
-  </RippleContainer>
+  <button class="my-button">
+    Click Me!
+    <Ripple />
+  </button>
 </template>
 
 <style>
-/* Style the wrapper (RippleContainer) */
-.my-button-wrapper {
-  display: inline-block; /* Adjusts size to content */
-  border-radius: 20px; /* Example styling */
-  cursor: pointer; /* Indicate interactivity */
-  user-select: none; /* Prevent text selection during click */
-  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
-}
-
-/* Style the inner element (the button) */
 .my-button {
+  /* This is required for the ripple to position correctly */
+  position: relative;
+
+  /* Your other styles */
+  border-radius: 20px;
   padding: 12px 24px;
   border: none;
-  background-color: #3f51b5; /* Example color */
+  background-color: #3f51b5;
   color: white;
-  font-size: 16px;
-}
-
-/* Example for a div/card */
-.my-card-wrapper {
-  display: inline-block;
-  border-radius: 16px; /* Example styling */
-  margin-top: 1rem;
-  background: hsla(0, 0%, 100%, 0.06); /* Example background */
   cursor: pointer;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.my-card-content {
-  padding: 20px;
 }
 </style>
 ```
+
+## Examples
+
+### Basic Button
+
+```vue
+<button class="demo-button">
+  Click me!
+  <Ripple />
+</button>
+
+<style>
+.demo-button {
+  position: relative;
+  border-radius: 20px;
+}
+</style>
+```
+
+### Interactive Card (div)
+
+```vue
+<div class="demo-card">
+  <h3>Interactive Card</h3>
+  <p>Click anywhere on this card.</p>
+  <Ripple />
+</div>
+
+<style>
+.demo-card {
+  position: relative;
+  border-radius: 16px;
+  background: hsla(0, 0%, 100%, 0.06);
+  cursor: pointer;
+}
+</style>
+```
+
+### Style Variants (Props)
+
+```vue
+<button class="demo-button">
+  M2 Ripple
+  <Ripple :isMaterial3="false" />
+</button>
+
+<button class="demo-button">
+  Purple Ripple
+  <Ripple rippleColor="#8e44ad80" />
+</button>
+
+<button class="demo-button">
+  Blue Sparkles
+  <Ripple sparklesColorRGB="52, 152, 219" />
+</button>
+```
+
+## Props
 
 <div align="center">
 
@@ -118,7 +139,6 @@ const handleBeforeRipple = (event: MouseEvent | TouchEvent) => {
 | ------------------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------- | --------------- | ------------------------------------------- |
 | `isMaterial3`      | yes      | Use Material 3 ripple style (with sparkles). Set to `false` for M2 style.                                                          | `true`          | `boolean`                                   |
 | `beforeRippleFn`   | yes      | Function executed just before the ripple animation starts. Useful for coordinated effects (e.g., press shadow).                    | `()=>{}`        | `(event: MouseEvent \| TouchEvent) => void` |
-| `className`        | yes      | Additional CSS class(es) to apply to the ripple container. Can be a string with space-separated classes.                           | `""`            | `string`                                    |
 | `rippleColor`      | yes      | Color of the ripple circle. Use `rgba` or `hsla` with transparency to see overlaps on multiple clicks.                             | `"#ffffff35"`   | `string`                                    |
 | `sparklesColorRGB` | yes      | Color of the sparkles (M3 only) as space-separated RGB (e.g., `"255 0 128"`). Does not support transparency.                       | `"255 255 255"` | `string`                                    |
 | `opacity_level1`   | yes      | Transparency level 1 for sparkles before they disappear. The initial opacity is calculated based on the ripple's current progress. | `"0.2"`         | `string`                                    |
@@ -126,10 +146,3 @@ const handleBeforeRipple = (event: MouseEvent | TouchEvent) => {
 | `sparklesMaxCount` | yes      | Maximum number of sparkle dots to render. Higher values create denser sparkle effects but may impact performance.                  | `2048`          | `number`                                    |
 
 </div>
-
-_**Important styling notes:**_
-
-- The `<RippleContainer>` **automatically handles** `position: relative`, `overflow: hidden`, and `z-index` internally - you don't need to add these.
-- The element inside (button, div, etc.) will automatically be positioned with `z-index: 1` to allow the ripple to appear on top.
-- You can add event listeners like `@click` to the inner element (button, div) rather than to `<RippleContainer>` to avoid conflicts with ripple's internal listeners.
-- Only add your custom styling (colors, border-radius, padding, etc.) to the wrapper or inner elements.

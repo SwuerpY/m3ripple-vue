@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { ref, computed, useCssModule } from "vue";
+import { ref, useCssModule } from "vue";
 import {
   offsetXFromCurrent,
   offsetYFromCurrent,
   rippleElemWidthOriginal,
 } from "../ripple/utils";
-import Ripple from "./base/Ripple.vue";
+import RippleInstance from "./base/RippleInstance.vue";
 
-// Define el tipo para un objeto ripple en el estado
 export type RippleObj = {
   ripple_width: number;
   offsetY: number;
@@ -21,7 +20,6 @@ const props = withDefaults(
   defineProps<{
     isMaterial3?: boolean;
     beforeRippleFn?: (event: MouseEvent | TouchEvent) => void;
-    className?: string; // Para clases CSS externas
     rippleColor?: string;
     sparklesColorRGB?: string;
     opacity_level1?: string;
@@ -31,7 +29,6 @@ const props = withDefaults(
   {
     isMaterial3: true,
     beforeRippleFn: () => {},
-    className: "",
     rippleColor: "#ffffff35",
     sparklesColorRGB: "255 255 255",
     opacity_level1: "0.2",
@@ -157,16 +154,11 @@ function cancelRipplePerformTouch() {
 }
 
 const $style = useCssModule();
-
-const containerClasses = computed(() => [
-  $style.rippleContainer,
-  props.className,
-]);
 </script>
 
 <template>
-  <div
-    :class="containerClasses"
+  <span
+    :class="$style.rippleOverlay"
     @mousedown="handleMouseDown"
     @touchstart.passive="handleTouchStart"
     @touchmove.passive="cancelRipplePerformTouch"
@@ -175,7 +167,7 @@ const containerClasses = computed(() => [
     @mouseup="rippleDeletionReservation"
     @mouseleave="rippleDeletionReservation"
   >
-    <Ripple
+    <RippleInstance
       v-for="ripple in ripples"
       :key="ripple.time"
       :time="ripple.time"
@@ -191,19 +183,14 @@ const containerClasses = computed(() => [
       :sparkles-max-count="props.sparklesMaxCount"
       @delete-ripple="deleteRipple"
     />
-    <slot />
-  </div>
+  </span>
 </template>
 
 <style module>
-.rippleContainer {
+.rippleOverlay {
+  border-radius: inherit;
+  position: absolute;
+  inset: 0;
   overflow: hidden;
-  position: relative;
-  z-index: 0;
-}
-
-.rippleContainer > :not(span) {
-  position: relative;
-  z-index: 1;
 }
 </style>

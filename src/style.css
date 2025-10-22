@@ -58,6 +58,20 @@ button {
   text-align: center;
 }
 
+.demo-button {
+  position: relative;
+  border-radius: 20px;
+  width: auto;
+  display: inline-block;
+}
+.demo-button:hover {
+  border-color: #646cff;
+}
+
+.demo-div {
+  position: relative;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

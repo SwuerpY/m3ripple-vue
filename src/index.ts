@@ -1,10 +1,10 @@
 import type { App } from "vue";
-import RippleContainer from "./components/RippleContainer.vue";
+import Ripple from "./components/Ripple.vue";
 
-export { RippleContainer };
+export { Ripple };
 
 export default {
   install(app: App) {
-    app.component("RippleContainer", RippleContainer);
+    app.component("Ripple", Ripple);
   },
 };

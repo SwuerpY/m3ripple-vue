@@ -165,7 +165,6 @@ onBeforeUnmount(() => {
 .ripple {
   position: absolute;
   border-radius: 100%;
-  z-index: 2;
   transform: translateX(-50%) translateY(-50%);
   pointer-events: none;
   display: flex;

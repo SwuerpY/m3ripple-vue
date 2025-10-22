@@ -1,4 +1,3 @@
-// src/components/base/SparklesCanvas.vue
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
 import { drawSparkles, type Sparkles } from "../../ripple/sparkles";
