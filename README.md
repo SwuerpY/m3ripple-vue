@@ -5,6 +5,7 @@
 [![NPM Version](https://img.shields.io/npm/v/m3ripple-vue?style=for-the-badge&logo=npm&logoColor=white&labelColor=%230d0b13&color=%2318151e)](https://www.npmjs.com/package/m3ripple-vue)
 [![npm package minimized gzipped size (scoped)](https://img.shields.io/bundlejs/size/m3ripple-vue?style=for-the-badge&labelColor=%230d0b13&color=%2318151e)](#)
 [![GitHub License](https://img.shields.io/github/license/swuerpy/m3ripple-vue?style=for-the-badge&labelColor=%230d0b13&color=%2318151e)](https://github.com/SwuerpY/m3ripple-vue/blob/main/LICENSE.txt)
+[![NPM Downloads](https://img.shields.io/npm/dy/m3ripple-vue?style=for-the-badge&logo=npm&logoColor=white&labelColor=%230d0b13&color=%2318151e)](https://npmtrends.com/m3ripple-vue)
 [![GitHub Repo stars](https://img.shields.io/github/stars/swuerpy/m3ripple-vue?style=for-the-badge&labelColor=%230d0b13&color=%2318151e)](#)
 
 > **Note:** This is a Vue 3 port of the original React project [m3ripple](https://github.com/yuyake-litrain/m3ripple) (MIT license) created by [Litrain](https://github.com/yuyake-litrain).
@@ -50,6 +51,8 @@ Import the `<Ripple />` component and place it **inside** any element you want t
 ```vue
 <script setup lang="ts">
 import { Ripple } from "m3ripple-vue";
+// Import the required styles
+import "m3ripple-vue/style.css";
 </script>
 
 <template>
